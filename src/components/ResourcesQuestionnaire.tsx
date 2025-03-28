@@ -119,9 +119,9 @@ const ResourcesQuestionnaire: React.FC<ResourcesQuestionnaireProps> = ({ onResou
                 <SelectValue placeholder="Select land size" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Small">Small (Urban garden, < 100 sq ft)</SelectItem>
+                <SelectItem value="Small">Small (Urban garden, &lt; 100 sq ft)</SelectItem>
                 <SelectItem value="Medium">Medium (Large garden, 100-500 sq ft)</SelectItem>
-                <SelectItem value="Large">Large (Small farm, > 500 sq ft)</SelectItem>
+                <SelectItem value="Large">Large (Small farm, &gt; 500 sq ft)</SelectItem>
               </SelectContent>
             </Select>
           </div>
