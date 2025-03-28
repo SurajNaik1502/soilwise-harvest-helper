@@ -20,9 +20,9 @@ export async function analyzeSoilImage(imageBase64: string): Promise<SoilAnalysi
           suitable_for: ["Root vegetables", "Carrots", "Radishes", "Potatoes"],
           ph_range: "5.5-7.0",
           nutrients: {
-            nitrogen: "Low",
-            phosphorus: "Low",
-            potassium: "Low"
+            nitrogen: "Low" as "Low",
+            phosphorus: "Low" as "Low",
+            potassium: "Low" as "Low"
           }
         },
         {
@@ -31,9 +31,9 @@ export async function analyzeSoilImage(imageBase64: string): Promise<SoilAnalysi
           suitable_for: ["Leafy greens", "Cabbage", "Broccoli", "Brussels sprouts"],
           ph_range: "5.5-7.5",
           nutrients: {
-            nitrogen: "Medium",
-            phosphorus: "Medium",
-            potassium: "Medium"
+            nitrogen: "Medium" as "Medium",
+            phosphorus: "Medium" as "Medium",
+            potassium: "Medium" as "Medium"
           }
         },
         {
@@ -42,9 +42,9 @@ export async function analyzeSoilImage(imageBase64: string): Promise<SoilAnalysi
           suitable_for: ["Most crops", "Tomatoes", "Peppers", "Zucchini"],
           ph_range: "6.0-7.0",
           nutrients: {
-            nitrogen: "High",
-            phosphorus: "Medium",
-            potassium: "High"
+            nitrogen: "High" as "High",
+            phosphorus: "Medium" as "Medium",
+            potassium: "High" as "High"
           }
         },
         {
@@ -53,9 +53,9 @@ export async function analyzeSoilImage(imageBase64: string): Promise<SoilAnalysi
           suitable_for: ["Most vegetables", "Shrubs", "Climbers", "Grasses"],
           ph_range: "6.0-7.0",
           nutrients: {
-            nitrogen: "Medium",
-            phosphorus: "Medium",
-            potassium: "Medium"
+            nitrogen: "Medium" as "Medium",
+            phosphorus: "Medium" as "Medium",
+            potassium: "Medium" as "Medium"
           }
         },
         {
@@ -64,15 +64,18 @@ export async function analyzeSoilImage(imageBase64: string): Promise<SoilAnalysi
           suitable_for: ["Acid-loving plants", "Blueberries", "Rhododendrons", "Heathers"],
           ph_range: "4.0-5.0",
           nutrients: {
-            nitrogen: "High",
-            phosphorus: "Low",
-            potassium: "Low"
+            nitrogen: "High" as "High",
+            phosphorus: "Low" as "Low",
+            potassium: "Low" as "Low"
           }
         }
       ];
       
-      // Select a random soil type from the array
-      return soilTypes[Math.floor(Math.random() * soilTypes.length)];
+      // Select a random soil type from the array for the mock implementation
+      // In a real implementation, we would use the Gemini API to analyze the image
+      const randomIndex = Math.floor(Math.random() * soilTypes.length);
+      toast.success(`Analysis complete: ${soilTypes[randomIndex].soilType} detected`);
+      return soilTypes[randomIndex];
     } else {
       // Simulate API error
       throw new Error("Failed to analyze soil image");
@@ -83,3 +86,12 @@ export async function analyzeSoilImage(imageBase64: string): Promise<SoilAnalysi
     return null;
   }
 }
+
+// Implementation notes for a real Gemini API:
+/*
+ * In a production implementation, you would:
+ * 1. Send the image to Google's Gemini API with appropriate model prompting
+ * 2. Parse the JSON response to extract soil classification
+ * 3. Handle rate limiting, authentication, and error cases properly
+ * 4. Consider caching results to avoid redundant API calls
+ */

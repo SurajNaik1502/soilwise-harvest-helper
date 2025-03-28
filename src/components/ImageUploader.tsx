@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Upload } from "lucide-react";
+import { Upload, Camera } from "lucide-react";
 
 interface ImageUploaderProps {
   onImageCaptured: (base64Image: string) => void;
@@ -35,9 +35,21 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageCaptured, isProces
       const base64Image = e.target?.result as string;
       setPreviewImage(base64Image);
       onImageCaptured(base64Image);
+      toast.success("Image uploaded successfully! Analyzing soil...");
     };
     
     reader.readAsDataURL(file);
+  };
+
+  // Function to handle capturing an image from camera (mobile devices)
+  const handleCameraCapture = () => {
+    // Check if the device supports camera capture
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      toast.info("Camera functionality would open here in a production app");
+      // In a real implementation, we would implement camera capture here
+    } else {
+      toast.error("Your device does not support camera access");
+    }
   };
   
   return (
@@ -52,15 +64,24 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageCaptured, isProces
               alt="Soil preview" 
               className="w-full h-64 object-cover rounded-md border-2 border-soil mb-2"
             />
-            <p className="text-sm text-gray-600 text-center">
-              {isProcessing ? "Analyzing soil image..." : "Image ready for analysis"}
-            </p>
+            <div className="flex items-center justify-center mt-2">
+              {isProcessing ? (
+                <div className="bg-soil-light text-white px-3 py-1 rounded-full text-sm flex items-center">
+                  <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                  Analyzing with Gemini AI...
+                </div>
+              ) : (
+                <div className="bg-green-100 text-soil-dark px-3 py-1 rounded-full text-sm">
+                  Analysis complete
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div className="border-2 border-dashed border-soil rounded-md p-8 mb-4 flex flex-col items-center justify-center bg-soil-lightest h-64">
             <Upload className="w-12 h-12 text-soil-dark mb-2" />
             <p className="text-sm text-gray-600 text-center mb-2">
-              Upload a clear image of your soil for analysis
+              Upload a clear image of your soil for Gemini AI analysis
             </p>
             <p className="text-xs text-gray-500 text-center">
               JPG, PNG, or GIF • Max 5MB
@@ -68,7 +89,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageCaptured, isProces
           </div>
         )}
         
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-3">
           <Button 
             asChild
             className="soil-button flex items-center"
@@ -84,6 +105,17 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageCaptured, isProces
               />
               {previewImage ? "Choose Another Image" : "Select Soil Image"}
             </label>
+          </Button>
+          
+          <Button
+            type="button"
+            variant="outline"
+            className="border-soil text-soil-darkest"
+            onClick={handleCameraCapture}
+            disabled={isProcessing}
+          >
+            <Camera className="w-4 h-4 mr-2" />
+            Take Photo
           </Button>
         </div>
       </div>

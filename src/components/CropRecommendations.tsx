@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card } from "@/components/ui/card";
 import { CropRecommendation } from '@/types/soil';
-import { Droplets, Clock, Plant } from 'lucide-react';
+import { Droplets, Clock, Leaf } from 'lucide-react';
 
 interface CropRecommendationsProps {
   crops: CropRecommendation[] | null;
@@ -34,7 +34,7 @@ const CropRecommendations: React.FC<CropRecommendationsProps> = ({ crops, isLoad
       <Card className="soil-card p-6">
         <h2 className="text-xl font-semibold text-soil-darkest mb-4">Recommended Crops</h2>
         <div className="text-center py-8">
-          <Plant className="h-16 w-16 mx-auto text-soil mb-2" />
+          <Leaf className="h-16 w-16 mx-auto text-soil mb-2" />
           <p className="text-gray-600 mb-2">No crop recommendations available</p>
           <p className="text-sm text-gray-500">Complete soil analysis and resource questionnaire first</p>
         </div>
@@ -63,7 +63,7 @@ const CropRecommendations: React.FC<CropRecommendationsProps> = ({ crops, isLoad
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-soil-light">
-                  <Plant className="h-20 w-20 text-white" />
+                  <Leaf className="h-20 w-20 text-white" />
                 </div>
               )}
             </div>
