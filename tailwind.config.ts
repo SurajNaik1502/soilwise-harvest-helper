@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Light green theme colors
+				soil: {
+					lightest: '#E8F5E9',
+					light: '#C8E6C9',
+					DEFAULT: '#A5D6A7',
+					dark: '#81C784',
+					darkest: '#66BB6A'
+				},
+				earth: {
+					light: '#D7CCC8',
+					DEFAULT: '#BCAAA4',
+					dark: '#A1887F'
 				}
 			},
 			borderRadius: {
@@ -84,11 +98,16 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'grow': {
+					'0%': { transform: 'scale(0.95)', opacity: '0.5' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'grow': 'grow 0.3s ease-out'
 			}
 		}
 	},
