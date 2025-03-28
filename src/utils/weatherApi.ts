@@ -2,7 +2,7 @@
 import { WeatherData } from "@/types/soil";
 import { toast } from "sonner";
 
-const API_KEY = "4f50c53e1b62b5816bb6d659872131fd"; // Free OpenWeatherMap API key
+const API_KEY = "30ac25388af08f9cac7e7d13bf01f13f"; // Free OpenWeatherMap API key
 
 export async function fetchWeatherData(latitude: number, longitude: number): Promise<WeatherData | null> {
   try {
